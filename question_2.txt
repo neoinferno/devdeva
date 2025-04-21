@@ -1,0 +1,27 @@
+2. สรุปรายละเอียดขั้นตอนในการเตรียมการ Server On-premise ว่าต้องมี Set-up, Config
+และติดตั้งอะไรบ้าง เพื่อให้ Server พร้อมใช้งาน โดยอธิบายเป็นรายข้อเรียงลำาดับขั้นตอน
+
+
+Answer: 
+1. OS Setup
+- Install Ubuntu Server
+- Setup Static IP (Assign a static IP address to ensure the server can always be reached using the same IP)
+
+2. Config OS
+ - Create User and grant permission (Create a non-root user account with sudo privileges. This improves security and avoids operating the system with full administrative access)
+ - SSH Config (SSH service for secure remote access)
+ - Config timezone (Set the correct timezone (Asia/Bangkok) for accurate logs and timestamps)
+ - IP(Verify the static IP configuration)
+ - Enable firewall
+
+3. Install Docker (Install Docker to support containerized applications and images)
+
+4. Install K8s (Install K8s, a lightweight Kubernetes distribution)
+    - kubectl config (Set up the Kubernetes CLI for the non-root user, so can manage the K8s cluster)
+
+5. Install Nginx Ingress (Entry point for external HTTP/S traffic)
+
+6. Install Monitoring System
+ - Helm (Package Manager for Kubernetes)
+ - Prometheus (Monitoring tool that collects and stores metrics from Kubernetes nodes and workloads)
+ - Grafana (Dashboard display metric from Prometheus Helps track system performance, service uptime, and resource usage)

@@ -1,0 +1,11 @@
+1. อธิบายขั้นตอนในการติดตั้งระบบปฏิบัติการ Ubuntu และการจัดเตรียม Environment อื่นๆ
+ใน Server On-premise สำาหรับ 1 โครงการ
+
+Answer:
+- prepare Ubuntu Server
+- config OS (user, ssh, timezone, ip, firewall)
+- ติดตั้ง Docker
+- ติดตั้ง Kubernetes (K8s)
+- kubectl config
+- ติดตั้ง Nginx Ingress
+- ติดตั้ง Prometheus + Grafana (สำหรับMonitor node,pod)

@@ -1,0 +1,55 @@
+5. จงอธิบายวิธีการติดตั้ง AWS Cloud / EC2 รวมทั้งการทำ EKS หรือ ECS พร้อมบอกข้อแตกต่างและความเหมาะสมในการใช้งาน
+
+EC2 Instance
+- Choose Region Singapore
+- AWS Console > EC2 > Launch Instance
+- OS: Ubuntu LTS
+- Instance Type: t3.medium, t2.micro
+- Key Pair: for SSH
+- ตั้งค่า Security Group (Firewall): Allow Port: 22 (SSH), 80/443 (Web), 3000+ (Dev)
+- Storage: config storage 
+
+EKS:
+- Install AWS CLI and kubectl
+- Install eksctl
+- Create EKS cluster by eksctl
+
+ECS:
+- Create new ECS setup OS Launch type and container
+- Create Cluster
+- Create Service and setup Launch type, task definition, number of tasks, network
+
+ข้อแตกต่างและความเหมาะสมในการใช้งาน ECS | EKS
+                    
+ECS (Elastic Container Service):
+    Technology Base: AWS proprietary orchestration system
+    Ease of Use: Easier, beginner-friendly
+    Setup Speed: Fast setup via Console or CLI
+    Infrastructure Control: Minimal – AWS manages most resources
+    Scalability: Built-in autoscaling, simple to configure
+    Cost Management: Generally cheaper
+    Ecosystem Integration: Limited (AWS-centric tools)
+    Security & RBAC: IAM-based permission management
+    Multi-cloud Portability: Not portable outside AWS
+    Use Case Fit: Simple workloads, quick deployments
+
+EKS (Elastic Kubernetes Service):
+    Technology Base: Native Kubernetes (Open-source standard)
+    Ease of Use: Steeper learning curve, more components to manage
+    Setup Speed: Slower setup, requires configuring cluster components
+    Infrastructure Control: More control – manage Kubernetes objects directly
+    Supports HPA, VPA, custom metrics (more flexible)
+    Scalability: May incur higher cost (control plane, node pools)
+    Cost Management: Full Kubernetes ecosystem (Helm, ArgoCD, Prometheus)
+    Ecosystem Integration: Advanced GitOps with ArgoCD, Helm, Kustomize
+    Security & RBAC: Kubernetes-native RBAC with fine-grained access
+    Multi-cloud Portability: Portable across any Kubernetes-compatible cloud
+    Use Case Fit: Complex microservices, multi-team, enterprise-grade
+
+ความเหมาะสมในการใช้งาน: 
+หากต้องการระบบที่ตั้งค่าได้ง่าย ดูแลง่ายเหมาะกับทีมที่ไม่อยากจัดการ control plane เยอะจะเลือก ECSเพราะช่วยให้ deploy เร็วไม่ต้องจัดการ server และ scale ง่าย
+แต่ถ้าเป็นระบบที่ใช้ GitOps, ArgoCD, มีความซับซ้อนด้าน microservices, หรือต้องการความยืดหยุ่นสูงจะเลือกใช้ EKS เพราะสามารถใช้ ecosystem ของ Kubernetes ได้เต็มรูปแบบ
+
+Use case:
+ECS เหมาะกับ workload ที่เน้น simplicity และ go-to-market เร็ว
+EKS เหมาะกับระบบที่ต้อง scale, มีทีม DevOps, หรือทำ multi-environment แบบ GitOps (dev, staging, prod)

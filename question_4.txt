@@ -1,0 +1,19 @@
+4.โจทย์ อธิบายขั้นตอนการทำา CI/CD โดยละเอียด
+
+Tools: 
+ - Jenkins(CI)
+ - ArgoCD(CD)
+
+Developer > Git Push (Source Code)
+[Jenkins CI]
+  - Stage Checkout Source Code
+  - Stage Get Secrets from Vault
+  - Stage Scan SonarQube Analysis
+  - Stage Check Quality Gate
+  - Stage Build Docker Image
+  - Stage Push Docker Image to AWS ECR
+  - Stage Update GitOps Repo
+[ArgoCD CD]
+  - Detect GitOps repo change
+  - Pull new ECR image
+  - Deploy to AWS EKS Cluster
